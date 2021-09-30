@@ -14,8 +14,7 @@ request(url, (err, res, body) => {
 
     console.log("This is weather forecast for " + date + "\n");
     console.log("Weather: " + weather);
-    console.log("Highest temp. today: " + dailyHigh + "C");
-    console.log("Lowest temp. today: " + dailyMin + "C");
-
+    console.log("Highest temp. today: " + dailyHigh + "\u00B0C");
+    console.log("Lowest temp. today: " + dailyMin + "\u00B0C");
 
 });
