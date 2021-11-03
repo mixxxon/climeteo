@@ -1,0 +1,3 @@
+Ime za command line aplikaciju vremensku prognozu:
+
+cli-meteo
