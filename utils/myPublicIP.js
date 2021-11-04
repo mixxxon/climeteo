@@ -8,6 +8,6 @@ module.exports = ip.find()
         return data;
     })
     .catch((err) => {
-        console.log("There seems to be a problem with the geolocation service. Here's the details: ")
-        console.log(err)
+        console.log("There seems to be a problem contacting the geolocation service. Here are the details:\n")
+        console.log(err.message)
     });

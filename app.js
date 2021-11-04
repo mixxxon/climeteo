@@ -2,6 +2,8 @@ const request = require("postman-request");
 const dateFormate = require("./utils/dateFormate.js");
 const ip = require("./utils/myPublicIP.js");
 
+console.time("Executed in"); // Start the timer
+
 ip.then((data)=>{
 
     const country = data.countryName;
@@ -11,15 +13,13 @@ ip.then((data)=>{
 
     console.log("Connecting to a service. Please wait...");
 
-    // const url = "https://www.7timer.info/bin/civillight.php?lon=20.5&lat=44.8&ac=0&unit=metric&output=json&tzshift=0";
-
     const url = `https://www.7timer.info/bin/civillight.php?lon=${lon}&${lat}&ac=0&unit=metric&output=json&tzshift=0`;
 
     request(url, (err, res, body) => {
 
         if(err){
             console.clear();
-            console.log("There seems to be a problem with the weather service. Here's the details: ");
+            console.log("There seems to be a problem with the weather service. Here are the details:\n");
             console.log(err.message);
 
         } else {
@@ -83,6 +83,8 @@ ip.then((data)=>{
             console.log("Weather: " + weather);
             console.log("Highest temp. today: " + dailyHigh + "\u00B0C");
             console.log("Lowest temp. today: " + dailyMin + "\u00B0C");
+            console.log('\u0007');
+            console.timeEnd("Executed in"); // End timer and display result
 
         }
     });
