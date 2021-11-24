@@ -4,6 +4,36 @@ const ip = require("./utils/myPublicIP.js");
 
 console.time("Executed in"); // Start the timer
 
+let argv = process.argv.slice(2);
+let appVersion = "1.0.0";
+
+// console.log(argv);
+
+// Check arguments
+if(argv[0] === "h" || argv[0] === "help"){
+
+    console.clear();
+    console.log("This is CLImeteo application help.");
+    console.log("\nYou can run an application without any options");
+    console.log("to get today's weather, based on your public");
+    console.log("IP address, or use the following options:\n");
+    console.log("h or help ...... To view the application help.");
+    console.log("v or version ... To view the application version.");
+    console.log("f or forecast .. To view 5 days weather forecast.");
+    console.log("\nUse the options by typing\n");
+    console.log("   climeteo <space> <option>");
+    console.log("\ninto the command line.")
+    return;
+
+} else if(argv[0] === "v" || argv[0] === "version"){
+
+    console.clear();
+    console.log("CLImeteo v." + appVersion);
+    return;
+
+}
+
+// Check the weather ;)   
 ip.then((data)=>{
 
     const country = data.countryName;
@@ -23,8 +53,6 @@ ip.then((data)=>{
             console.log(err.message);
 
         } else {
-
-            console.clear();
             
             const data = JSON.parse(body);
         
@@ -78,14 +106,45 @@ ip.then((data)=>{
                     break;
             }
         
-            console.log(`Today's weather for ${city}, ${country}`);
-            console.log(`Date: ${date} \n`);
-            console.log("Weather: " + weather);
-            console.log("Highest temp. today: " + dailyHigh + "\u00B0C");
-            console.log("Lowest temp. today: " + dailyMin + "\u00B0C");
-            console.log('\u0007');
-            console.timeEnd("Executed in"); // End timer and display result
+            if(argv.length === 0){
 
+                console.clear();
+                console.log(`Today's weather for ${city}, ${country}`);
+                console.log(`Date: ${date} \n`);
+                console.log("Weather: " + weather);
+                console.log("Highest temp. today: " + dailyHigh + "\u00B0C");
+                console.log("Lowest temp. today: " + dailyMin + "\u00B0C");
+                console.log('\u0007');
+                console.timeEnd("Executed in"); // End timer and display result
+
+            } else if(argv[0] === "f" || argv[0] === "forecast"){
+            
+                console.clear();
+                console.log(`Five day weather forecast for ${city}, ${country}`);
+
+                for(let i=0; i<=4; i++){
+
+                    console.log("\n" + dateFormate(data.dataseries[i].date));
+                    console.log("Weather: " + weather);
+                    console.log("Max: " + data.dataseries[i].temp2m.max + "\u00B0C");
+                    console.log("Min: " + data.dataseries[0].temp2m.min + "\u00B0C");
+                }
+
+                console.log('\u0007');
+                console.timeEnd("Executed in"); // End timer and display result
+
+            } else {
+
+                console.clear();
+                console.log("Option \"" + argv[0] + "\" is not recognized. Please consider help.");
+                console.log("\nYou can get help by writing...\n");
+                console.log("   climeteo <space> h");
+                console.log("           or");
+                console.log("   climeteo <space> help");
+                console.log("\n...in the command line.");
+                return;
+            
+            }
         }
     });
 });

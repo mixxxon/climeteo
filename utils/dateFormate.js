@@ -1,4 +1,4 @@
-// This is script design to convert date format (bexony ;)
+// Script for converting date format (bexony ;)
 
 const dateFormate = (date) => {
     const dateString = date.toString();
