@@ -127,7 +127,7 @@ ip.then((data)=>{
                     console.log("\n" + dateFormate(data.dataseries[i].date));
                     console.log("Weather: " + weather);
                     console.log("Max: " + data.dataseries[i].temp2m.max + "\u00B0C");
-                    console.log("Min: " + data.dataseries[0].temp2m.min + "\u00B0C");
+                    console.log("Min: " + data.dataseries[i].temp2m.min + "\u00B0C");
                 }
 
                 console.log('\u0007');
