@@ -1,14 +1,14 @@
 {
   "name": "climeteo",
   "version": "1.0.0",
-  "description": "",
+  "description": "climeteo is simple command-line application done in Node.js",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["weather", "command-line", "node.js", "application"],
+  "author": "Milan M. Dimitrijevic (github.com/mixxxon/)",
+  "license": "MIT",
   "dependencies": {
     "my-public-ip": "^1.1.0",
     "postman-request": "^2.88.1-postman.30"
